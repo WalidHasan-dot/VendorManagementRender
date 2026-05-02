@@ -1,0 +1,37 @@
+package com.vms.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Data
+public class RegisterRequest {
+    @NotBlank
+    @Size(min = 3, max = 20)
+    private String username;
+
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+
+    private Set<String> role;
+
+    @NotBlank
+    @Size(min = 6, max = 40)
+    private String password;
+
+    @JsonProperty("userRole")
+    private String userRole;
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+}
